@@ -62,36 +62,7 @@ namespace MedicineLocator.Model
                 return null;
             }
         }
-        public Client GetClientFromUserId(string userId)
-        {
-            SqlCommand cmd = sdb.GetQuery("SELECT c_Id,c_Name,gender,c_Number,a_Id FROM client WHERE c_Id=@c_Id");
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@c_Id", userId);
-            Client c = GetSpecificClientData(cmd);
-            return c;
-
-        }
-        public Client GetSpecificClientData(SqlCommand cmd)
-        {
-            cmd.Connection.Open();
-            SqlDataReader sdr = cmd.ExecuteReader();
-            Client client = new Client();
-            using (sdr)
-            {
-                while (sdr.Read())
-                {
-                    
-                    client.C_Id = sdr.GetString(0);
-                    client.C_Name = sdr.GetString(1);
-                    client.Gender = sdr.GetString(2);
-                    client.C_Number = Convert.ToInt32(sdr.GetInt32(3));
-                    client.A_Id = sdr.GetString(4);
-                     
-                }
-            }
-            cmd.Connection.Close();
-            return client;
-        }
+        
         public List<Client> GetAllClient()
         {
             SqlCommand cmd = sdb.GetQuery("SELECT * FROM client");

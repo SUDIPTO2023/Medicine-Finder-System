@@ -85,7 +85,7 @@ namespace MedicineLocator.View
         {
             string currentClientId = currentClient.User_Id;
             ClientController cc = new ClientController();
-            Client c = cc.GetClientFromUserId(currentClientId);
+            Client c = cc.SearchClient(currentClientId);
            
             IdTextbox.Text = c.C_Id;
             NameTextBox.Text = c.C_Name;

@@ -27,11 +27,11 @@ namespace MedicineLocator.Model
              
             this.A_Id = a_Id;
         }
-
+        
         public string M_Id { get => m_Id; set => m_Id = value; }
         public string M_Name { get => m_Name; set => m_Name = value; }
         public int M_Number { get => m_Number; set => m_Number = value; }
          
         public string A_Id { get => a_Id; set => a_Id = value; }
-    }
+   }
 }

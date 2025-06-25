@@ -32,11 +32,7 @@ namespace MedicineLocator.Controller
             List<Client> c = clients.GetAllClient();
             return c;
         }
-        public Client GetClientFromUserId(string userId)
-        {
-            Client c=clients.GetClientFromUserId(userId);
-            return c;
-        }
+        
 
         public List<Client> GetClients(string adminId)
         {
