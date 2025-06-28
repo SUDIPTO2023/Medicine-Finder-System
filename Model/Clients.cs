@@ -81,6 +81,7 @@ namespace MedicineLocator.Model
         public List<Client>GetData(SqlCommand cmd)
         {
             cmd.Connection.Open();
+             
             SqlDataReader sdr= cmd.ExecuteReader();
             List<Client> clientList = new List<Client>();
             using (sdr)
@@ -91,7 +92,7 @@ namespace MedicineLocator.Model
                     client.C_Id = sdr.GetString(0);
                     client.C_Name = sdr.GetString(1);
                     client.Gender = sdr.GetString(2);
-                    client.C_Number = Convert.ToInt32(sdr.GetInt32(3));
+                    client.C_Number = sdr.GetInt32(3);
                     client.A_Id = sdr.GetString(4);
                     clientList.Add(client);
                 }

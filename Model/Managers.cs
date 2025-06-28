@@ -66,34 +66,7 @@ namespace MedicineLocator.Model
             List<Manager> managerList = GetData(cmd);
             return managerList;
         }
-        public Manager GetManagerByUserId(string userId)
-        {
-            SqlCommand cmd = sqdb.GetQuery("SELECT m_Id,m_Name,m_Number,a_Id FROM manager WHERE m_Id=@m_Id");
-            cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue("@m_Id", userId);
-            Manager manager = GetSpecificManagerData(cmd);
-            return manager;
-        }
-        public Manager GetSpecificManagerData(SqlCommand cmd)
-        {
-            cmd.Connection.Open();
-            SqlDataReader sqd = cmd.ExecuteReader();
-            Manager manager = new Manager();
-            using (sqd)
-            {
-                while (sqd.Read())
-                {
-                     
-                    manager.M_Id = sqd.GetString(0);
-                    manager.M_Name = sqd.GetString(1);
-                    manager.M_Number = Convert.ToInt32(sqd.GetInt32(2));
-                    manager.A_Id = sqd.GetString(3);
-                     
-                }
-            }
-            cmd.Connection.Close();
-            return manager ;
-        }
+        
         public List<Manager>GetManager(string adminId)
         {
             SqlCommand cmd = sqdb.GetQuery("SELECT m_Id,m_Name,m_Number,a_Id FROM manager WHERE a_Id=@a_Id");
@@ -124,7 +97,7 @@ namespace MedicineLocator.Model
         }
         
 
-        // Random unique Client ID generate
+         
         
-    }
+   }
 }

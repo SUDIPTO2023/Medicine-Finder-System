@@ -82,12 +82,7 @@ namespace MedicineLocator.Model
 
         public List<Medicine> GetMedicineByNameAndLocation(string name, string location)
         {
-            SqlCommand cmd = sqdb.GetQuery(@"
-                SELECT me.*,p.p_Name
-                FROM medicine me
-                JOIN pharmacy p ON me.p_id = p.p_Id
-                WHERE me.me_Name = @me_Name AND p.locatioin = @locatioin
-            ");
+            SqlCommand cmd = sqdb.GetQuery(@"SELECT me.*,p.p_Name  FROM medicine me INNER JOIN pharmacy p ON me.p_id = p.p_Id WHERE me.me_Name = @me_Name AND p.locatioin = @locatioin");
             cmd.Parameters.AddWithValue("@me_Name", name);
             cmd.Parameters.AddWithValue("@locatioin", location);
             List<Medicine> medicineList = GetExtraData(cmd);
@@ -107,8 +102,8 @@ namespace MedicineLocator.Model
                     medicine.Me_Name = sdr.GetString(1);
                     medicine.Salt = sdr.GetString(2);
                     medicine.Company = sdr.GetString(3);
-                    medicine.Price = Convert.ToInt32(sdr.GetInt32(4));
-                    medicine.Quantity = Convert.ToInt32(sdr.GetInt32(5));
+                    medicine.Price = sdr.GetInt32(4);
+                    medicine.Quantity = sdr.GetInt32(5);
                     medicine.Type = sdr.GetString(6);
                     medicine.P_Id = sdr.GetString(7);
                     medicine.P_Name = sdr.GetString(8);

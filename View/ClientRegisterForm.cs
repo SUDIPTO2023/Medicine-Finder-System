@@ -45,7 +45,7 @@ namespace MedicineLocator.View
             string mail = EmailTextBox.Text;
             if (! mail.EndsWith("@gmail.com"))
             {
-                MessageBox.Show("Enter A vailid Email");
+                MessageBox.Show("Please fill up your information and give valid email");
                 return null;
 
             }
@@ -63,7 +63,7 @@ namespace MedicineLocator.View
             }
             else
             {
-                MessageBox.Show("Please Give a Valid phone Number");
+                MessageBox.Show("Please fill up your information and give valid phonenumber");
                 return null;
             }
         }

@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using MedicineLocator.Model;
 using MedicineLocator.Controller;
+using Microsoft.Data.SqlClient;
 
 namespace MedicineLocator.View
 {
@@ -77,14 +78,13 @@ namespace MedicineLocator.View
                 {
                     MessageBox.Show("Invalid Id or Password");
                 }
-
-
             }
-
             else
             {
-                MessageBox.Show("Invalid Id or Password");
+                MessageBox.Show("Invalid Id or Password Carefully Fill Up");
             }
+
+
 
 
 

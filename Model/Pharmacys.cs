@@ -105,20 +105,20 @@ namespace MedicineLocator.Model
  
         public  string GetPharmacyIdByManagerId(string managerId)
         {
-            string pharmacyId = "0";
+          
             SqlCommand cmd = sqdb.GetQuery("SELECT p_Id FROM Pharmacy WHERE m_Id = @m_Id");
-
             cmd.CommandType = CommandType.Text;
-            cmd.Parameters.AddWithValue ("@m_Id",managerId);
+            cmd.Parameters.AddWithValue ("@m_Id",managerId);         
+            Pharmacy p = new Pharmacy();
             cmd.Connection.Open();
-            object result = cmd.ExecuteScalar();
-            
-            if (result != null)
+            SqlDataReader sdb = cmd.ExecuteReader();
+            while(sdb.Read())
             {
-                pharmacyId = Convert.ToString(result);
+              p.P_Id = sdb.GetString(0);
+              
             }
-            cmd.Connection.Close(); 
-            return pharmacyId;
+            cmd.Connection.Close();
+            return p.P_Id;
 
         }
    }

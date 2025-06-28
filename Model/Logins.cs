@@ -37,55 +37,44 @@ namespace MedicineLocator.Model
             Login login = GetDataValid(cmd);
             return login;
         }
-        public void UpdatePassword(Login login)
-        {
-            try
-            {
-
-                SqlCommand cmd = sdb.GetQuery("UPDATE login SET password=@password WHERE user_Id=@user_Id");
-                cmd.CommandType = CommandType.Text;
-                cmd.Parameters.AddWithValue("@user_Id", login.User_Id);
-                cmd.Parameters.AddWithValue("@password", login.Password);
-                cmd.Connection.Open();
-                cmd.ExecuteNonQuery();
-                cmd.Connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.StackTrace);
-            }
-        }
         public Login GetDataValid(SqlCommand cmd)
         {
             cmd.Connection.Open();
             SqlDataReader sdr = cmd.ExecuteReader();
             Login login = new Login();
 
-            
-           
             if (sdr.Read())
             {
-                     
-              login.User_Id = sdr.GetString(0);
-              login.Email = sdr.GetString(1);
-              login.Role = sdr.GetInt32(2);
-              login.SecurityAnswer = sdr.GetString(3);
-              login.Password = sdr.GetString(4);
-              cmd.Connection.Close();
-              return login;
+                login.User_Id = sdr.GetString(0);
+                login.Email = sdr.GetString(1);
+                login.Role = sdr.GetInt32(2);
+                login.SecurityAnswer = sdr.GetString(3);
+                login.Password = sdr.GetString(4);
+                cmd.Connection.Close();
+                return login;
             }
             else
             {
                 cmd.Connection.Close();
                 return null;
-                
+
             }
 
-
-
-
-
         }
+
+        public void UpdatePassword(Login login)
+        {
+              SqlCommand cmd = sdb.GetQuery("UPDATE login SET password=@password WHERE user_Id=@user_Id");
+              cmd.CommandType = CommandType.Text;
+              cmd.Parameters.AddWithValue("@user_Id", login.User_Id);
+              cmd.Parameters.AddWithValue("@password", login.Password);
+              cmd.Connection.Open();
+              cmd.ExecuteNonQuery();
+              cmd.Connection.Close();
+            
+             
+        }
+       
         public Login SearchLogin(string user_Id,string password)
         {
             SqlCommand cmd = sdb.GetQuery("SELECT* FROM login WHERE user_Id=@user_Id AND password=@password");

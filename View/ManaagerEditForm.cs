@@ -74,7 +74,7 @@ namespace MedicineLocator.View
         {
             string currentManagerId = currentManager.User_Id;
             ManagerController mc = new ManagerController();
-            Manager manager = mc.GetManagerByUserId(currentManagerId);
+            Manager manager = mc.SearchManager(currentManagerId);
 
             IdTextbox.Text = manager.M_Id;
             NameTextBox.Text = manager.M_Name;

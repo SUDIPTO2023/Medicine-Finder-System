@@ -37,11 +37,7 @@ namespace MedicineLocator.Controller
             Manager m=managers.SearchManager(managerId);
             return m;
         }
-        public Manager GetManagerByUserId(string userId)
-        {
-            Manager m = managers.GetManagerByUserId(userId);
-            return m;
-        }
+        
     }
     
 }
